@@ -262,6 +262,7 @@ const playGame = () => {
   gameState.initGame();
   displayBoard();
   while (gameState.won === false) {
+      console.log(`${gameState.player}, it's your turn.`);
       markSpot(gameState.player);
       displayBoard();
       if (checkWin(gameState.board) === true) {
