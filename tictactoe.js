@@ -186,6 +186,7 @@ const checkWin = board => {
     return false;
   }
 }
+
 /**
   * @func isFull
   * @desc checks all possible spots for space for game condition
@@ -201,6 +202,7 @@ const isFull = () => {
   }
   return true;
 }
+
 /**
   * @func winLog
   * @desc logs winner or tie, and current points for both players
@@ -216,6 +218,7 @@ const winLog = () => {
   }
   console.log(`X has won ${gameState.p1Wins}, and O has won ${gameState.p2Wins}.`);
 }
+
 /**
   * @func addPoints
   * @desc add points depending on winner
@@ -226,6 +229,7 @@ const addPoints = () => {
   gameState.p1Wins += 1:
   gameState.p2Wins += 1;
 }
+
 /**
   * @func playAgain
   * @desc asks the player if they would like to play playAgain
@@ -236,6 +240,7 @@ const playAgain = () => {
   let answer = prompt.question('Would you like to play again? Type [y/n].\n');
   answer === 'y' ? playGame(): console.log('Thanks for playing!');
 }
+
 /**
   * @func playGame
   * @desc Game order works as follows
