@@ -18,6 +18,7 @@ const gameState = {
   won: false,
   winner: null,
   player: 'X',
+  playing: true,
   initGame() {
     this.board = [
       ['1','2','3'],
@@ -238,7 +239,7 @@ const addPoints = () => {
   */
 const playAgain = () => {
   let answer = prompt.question('Would you like to play again? Type [y/n].\n');
-  answer === 'y' ? playGame(): console.log('Thanks for playing!');
+  answer != 'y' ? gameState.playing = false : console.log('Another round!');
 }
 
 /**
@@ -259,21 +260,23 @@ const playAgain = () => {
   * @returns {undefined}
   */
 const playGame = () => {
-  gameState.initGame();
-  displayBoard();
-  while (gameState.won === false) {
-      console.log(`${gameState.player}, it's your turn.`);
-      markSpot(gameState.player);
-      displayBoard();
-      if (checkWin(gameState.board) === true) {
-        gameState.winner = gameState.player;
-        gameState.won = true;
-      }
-      if (isFull() === true) { break };
-      switchPlayer();
-  }
-  winLog();
-  playAgain();
+  while (gameState.playing === true) {
+    gameState.initGame();
+    displayBoard();
+    while (gameState.won === false) {
+        console.log(`${gameState.player}, it's your turn.`);
+        markSpot(gameState.player);
+        displayBoard();
+        if (checkWin(gameState.board) === true) {
+          gameState.winner = gameState.player;
+          gameState.won = true;
+        }
+        if (isFull() === true) { break };
+        switchPlayer();
+    }
+    winLog();
+    playAgain();
+}
 }
 
 playGame();
